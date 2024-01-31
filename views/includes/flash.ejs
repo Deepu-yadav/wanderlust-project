@@ -1,0 +1,43 @@
+<% if(success && success.length> 0) { %>
+
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <i class="fa-regular fa-compass"></i>
+        <strong class="me-auto mx-2" style="color: #fe424d;">AirBnB Clone</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        <strong>
+          <%= success %>
+        </strong>
+      </div>
+    </div>
+  </div>
+
+  <% } %>
+
+    <% if(error && error.length> 0) { %>
+      <div class="alert alert-danger alert-dismissible fade show mt-2 col-6 offset-3" role="alert">
+        <%= error %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <% } %>
+
+
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            var successMessage = '<%= success %>'; // Assuming success is a server-side variable
+
+            if (successMessage && successMessage.length > 0) {
+              // Create a new toast element
+              var toast = new bootstrap.Toast(document.getElementById('liveToast'), { autohide: false });
+
+              // Show the toast
+              toast.show();
+
+              // Optional: You can clear the success message after showing the toast
+              // successMessage = '';
+            }
+          });
+        </script>
